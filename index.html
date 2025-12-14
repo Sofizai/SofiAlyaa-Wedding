@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofi & Alyaa - Wedding Invitation</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* General Reset and Font Setup */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Smooth Scrolling Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #4A4543; 
+            padding-top: 60px; 
+        }
+
+        /* --- Music Player Styling --- */
+        .music-player {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1001; 
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        .music-player:hover {
+            opacity: 1;
+        }
+        
+        /* --- GLOBAL NAVIGATION --- */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 0 3rem;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 25px; 
+        }
+
+        .nav-list a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #92786B; 
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-list a:hover {
+            color: #4A4543; 
+        }
+        
+        /* --- 1. HERO SECTION (Page 1) STYLING --- */
+        .hero {
+            background: url('background.jpg') no-repeat center center/cover;
+            height: calc(100vh - 60px); 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            margin-top: -60px; 
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(60, 47, 42, 0.4); 
+            z-index: 1;
+        }
+        
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding-bottom: 10vh;
+        }
+        
+        .names {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 400; 
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            color: #f7f7f7; 
+        }
+        
+        .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 5px;
+            color: #D3C4B8;
+            margin-bottom: 2rem;
+        }
+        
+        .rsvp-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border: 1px solid #D3C4B8;
+            color: #D3C4B8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .info-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            z-index: 2; 
+            background-color: rgba(0, 0, 0, 0.05); 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            color: #D3C4B8; 
+            text-transform: uppercase;
+        }
+        
+        /* --- SECTIONS 2, 3, 4, 5 (Default Background) --- */
+        .parents-page, .schedule-page, .guestbook-page, .doa-page {
+            background-color: #DED8CC; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+            padding: 80px 20px; 
+        }
+        
+        /* --- SECTION 6: CONTACT PAGE (Ready for Background Image) --- */
+        .contact-page {
+            /* RENAME 'contact-bg.jpg' to your image file name! */
+            background: url('contact-bg.jpg') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+            padding: 80px 20px; 
+            position: relative; 
+        }
+        
+        /* Optional: Overlay to darken the contact background image */
+        .contact-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(60, 47, 42, 0.2); 
+            z-index: 1;
+        }
+
+        /* Invitation Box Styling (The internal white box) */
+        .info-block-container {
+            max-width: 650px;
+            padding: 50px 70px; 
+            border: 1px solid #BCAAA4; 
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin: 40px auto; 
+            position: relative; 
+            z-index: 2; 
+        }
+
+        /* General Typography styles */
+        .greeting { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid #92786B; padding-top: 2rem; margin-bottom: 2rem; color: #4A4543;}
+        .parent-names { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 600; line-height: 1.6; margin-bottom: 2rem;}
+        .parent-names .ampersand,.couple-names .ampersand { display: block; margin: 1.5rem 0; font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 400; color: #92786B; line-height: 1;}
+        .invitation-message { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; line-height: 1.8; margin: 4rem 0; padding: 0 10px; color: #92786B;}
+        .couple-names { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 600; line-height: 1.6; margin-top: 3rem;}
+        
+        /* --- SECTION 3: SCHEDULE STYLING --- */
+        .schedule-content { max-width: 900px; width: 100%; display: flex; justify-content: space-around; text-align: left; padding: 50px 20px; border: 1px solid #BCAAA4; background-color: rgba(255, 255, 255, 0.9); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);}
+        .details-column, .schedule-column { width: 45%; padding: 0 20px;}
+        .schedule-title { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2.5rem; color: #4A4543;}
+        .info-block { margin-bottom: 3rem; line-height: 1.8;}
+        .info-block h4 { font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; color: #4A4543;}
+        .info-block p, .info-block a { font-size: 0.9rem; color: #92786B; text-decoration: none;}
+        .time-entry { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #BCAAA4; font-size: 0.95rem; color: #4A4543;}
+        .time-entry:last-child { border-bottom: none;}
+        .time-entry .time { font-weight: 700; width: 15%; color: #92786B;}
+        .time-entry .activity { width: 80%;}
+
+        /* --- SECTION 4: GUESTBOOK / MESSAGE STYLING --- */
+        .guestbook-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 400; margin-bottom: 0.5rem; color: #4A4543;}
+        .guestbook-subtitle { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: #92786B; margin-bottom: 2rem;}
+        .guestbook-message { font-size: 0.95rem; line-height: 1.8; color: #4A4543; margin-bottom: 2.5rem;}
+        .message-box { width: 100%; height: 150px; padding: 15px; border: 1px solid #BCAAA4; background-color: #F7F7F7; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; resize: none; color: #92786B; text-align: left; margin-bottom: 1.5rem;}
+        .form-instructions { font-size: 0.85rem; color: #92786B; margin-top: 1.5rem; border-top: 1px solid #BCAAA4; padding-top: 1.5rem;}
+        .form-instructions a { color: #92786B; font-weight: 600; text-decoration: underline;}
+
+        /* --- SECTION 5: DO'A & COUNTDOWN STYLING --- */
+        .doa-content { max-width: 1000px; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 60px 40px; border: 1px solid #BCAAA4; background-color: rgba(255, 255, 255, 0.9); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);}
+        .image-column, .text-column { width: 48%; text-align: left;}
+        .doa-image { width: 100%; height: 400px; background: url('binga.jpg') no-repeat center center/cover; filter: grayscale(100%) brightness(90%) contrast(100%); border: 1px solid #BCAAA4;}
+        .arabic-text { font-family: 'Traditional Arabic', serif; font-size: 2.2rem; text-align: left; line-height: 1.8; color: #4A4543; margin-bottom: 2.5rem;}
+        .doa-text { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; line-height: 1.8; color: #92786B; margin-bottom: 4rem;}
+        .countdown-title { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: #4A4543; margin-bottom: 1.5rem;}
+        .timer-container { display: flex; gap: 20px; align-items: baseline;}
+        .timer-block { text-align: center; color: #92786B;}
+        .timer-number { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 700; line-height: 1; display: block; margin-bottom: 0.3rem; color: #4A4543;}
+        .timer-label { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;}
+
+        /* --- SECTION 6: CONTACT STYLING --- */
+        .contact-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 400; margin-bottom: 0.5rem; color: #4A4543;}
+        .contact-message { font-size: 0.95rem; line-height: 1.8; color: #92786B; margin: 2.5rem 0 3.5rem;}
+        .contact-details-grid { display: flex; justify-content: space-around; gap: 30px; margin-bottom: 40px;}
+        .contact-block { text-align: center; padding: 15px; flex: 1;}
+        .contact-block h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.8rem; color: #4A4543;}
+        .contact-block p, .contact-block a { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: #92786B; text-decoration: none; transition: color 0.3s;}
+        .contact-block a:hover { color: #4A4543;}
+        .footer-end { font-size: 0.8rem; margin-top: 40px; color: #BCAAA4; border-top: 1px solid #BCAAA4; padding-top: 20px;}
+        
+        /* --- SECTION 7: WISHES PAGE STYLING (UCAPAN TAMU) --- */
+        .wishes-page {
+            background-color: #DED8CC; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .wishes-content {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .wishes-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #4A4543; 
+            margin-bottom: 50px;
+        }
+
+        #wishes-display {
+            padding-top: 20px;
+        }
+
+        .wish-card {
+            border-bottom: 1px dashed #BCAAA4; 
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+
+        .wish-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .arabic-text {
+            font-family: 'Traditional Arabic', serif; 
+            font-size: 1.8rem; 
+            line-height: 2;
+            color: #92786B; 
+            margin-bottom: 1rem;
+        }
+
+        .wish-message {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #4A4543; 
+            margin-bottom: 1.5rem;
+        }
+
+        .wish-sender {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #92786B; 
+            margin-top: 20px;
+        }
+
+        .loading-message {
+            color: #92786B;
+            font-size: 1rem;
+        }
+
+        .dot-separator {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .dot-separator span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #BCAAA4; 
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+        
+        /* --- Responsive Adjustments Omitted for Brevity (They are still in the full code) --- */
+    </style>
+</head>
+<body>
+    
+    <div class="music-player">
+        <audio id="music" autoplay loop controls>
+            <source src="The Fate of Ophelia.mp3" type="audio/mp3"> 
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <nav class="main-nav">
+        <ul class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#invitation">Jemputan</a></li>
+            <li><a href="#schedule">Jadual</a></li>
+            <li><a href="#guestbook">Ucapan</a></li>
+            <li><a href="#doa">Doa</a></li>
+            <li><a href="#contact">Hubungi</a></li>
+            <li><a href="#wishes">Ucapan Tamu</a></li>
+        </ul>
+    </nav>
+
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="names">Sofi & Alyaa</h1>
+            <p class="tagline">ARE GETTING MARRIED</p>
+            <a href="#invitation" class="rsvp-button" id="playMusic">VIEW INVITATION</a>
+        </div>
+        
+        <div class="info-bar">
+            <p class="date-time">MARCH 28, 2026 - 6:00 PM - 10:00 PM</p>
+            <p class="location">ADINDA WEDDING HALL, BANDAR PERDA</p>
+        </div>
+    </header>
+
+    <section class="parents-page" id="invitation">
+        <div class="info-block-container">
+            
+            <p class="greeting">
+                ASSALAMUALAIKUM DAN<br>SALAM SEJAHTERA
+            </p>
+
+            <div class="parent-names">
+                ZABIDI BIN ABDULLAH
+                <span class="ampersand">&</span>
+                SITI LATIEAH BINTI CHE WANG
+            </div>
+
+            <p class="invitation-message">
+                Dengan penuh kesyukuran, kami menjemput Dato, Datin, Tuan, Puan, Encik, Cik seisi <br>
+                keluarga hadir ke majlis perkahwinan anakanda kami
+            </p>
+
+            <div class="couple-names">
+                MUHAMMAD SOFI BIN ZABIDI
+                <span class="ampersand">&</span>
+                NUR FAZLIN ALYAA BINTI AZHAR
+            </div>
+
+        </div>
+    </section>
+
+    <section class="schedule-page" id="schedule">
+        <div class="schedule-content">
+            
+            <div class="details-column">
+                <h2 class="schedule-title">Maklumat Majlis</h2>
+                
+                <div class="info-block">
+                    <h4>Lokasi</h4>
+                    <p>Adinda Wedding Hall, 188 Jalan Perda Utama, 14000, Bukit Mertajam, Pulau Pinang.</p>
+                </div>
+                
+                <div class="info-block">
+                    <h4>Tarikh dan Masa</h4>
+                    <p>28 March 2026 (Sabtu)</p>
+                    <p>6pm - 10pm</p>
+                </div>
+
+                <div class="info-block">
+                    <h4>Google Map</h4>
+                    <a href="https://share.google/RYYmYJjKxOQd5GntN" target="_blank" rel="noopener noreferrer">
+                        Lihat Lokasi di Google Maps
+                    </a>
+                </div>
+
+            </div>
+            
+            <div class="schedule-column">
+                <h2 class="schedule-title">Atur Cara Majlis</h2>
+                
+                <div class="time-entry">
+                    <span class="time">6:00 PM</span>
+                    <span class="activity">Kehadiran Tetamu</span>
+                </div>
+                
+                <div class="time-entry">
+                    <span class="time">8:00 PM</span>
+                    <span class="activity">Ketibaan Pengantin</span>
+                </div>
+                
+                <div class="time-entry">
+                    <span class="time">8:00 PM</span>
+                    <span class="activity">Makan Beradab</span>
+                </div>
+                
+                <div class="time-entry">
+                    <span class="time">9:00 PM</span>
+                    <span class="activity">Bergambar bersama pengantin</span>
+                </div>
+                
+                <div class="time-entry">
+                    <span class="time">10:00 PM</span>
+                    <span class="activity">Majlis bersurai</span>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="guestbook-page" id="guestbook">
+        <div class="info-block-container">
+            
+            <h2 class="guestbook-title">Tinggalkan Ucapan</h2>
+            <p class="guestbook-subtitle">Doa & Kata-Kata Tulus</p>
+
+            <p class="guestbook-message">
+                Kami amat gembira untuk berkongsi hari bahagia ini bersama anda. Sila tinggalkan ucapan tahniah dan doa tulus ikhlas anda untuk kami memulakan kehidupan baru.
+            </p>
+
+            <textarea class="message-box" placeholder="Contoh: Tahniah Sofi & Alyaa! Semoga berkekalan hingga ke Jannah. Kami doakan yang terbaik untuk kehidupan baru anda berdua."></textarea>
+            
+            <p class="form-instructions">
+                **PERHATIAN:** Untuk meninggalkan ucapan anda secara rasmi, sila klik pada pautan berikut untuk mengisi borang: <br>
+                <a href="https://forms.gle/cNJxeKtGA7vgf69i9" target="_blank" rel="noopener noreferrer">KLIK SINI UNTUK TINGGALKAN MESEJ</a>
+            </p>
+
+        </div>
+    </section>
+    
+    <section class="doa-page" id="doa">
+        <div class="doa-content">
+            
+            <div class="image-column">
+                <div class="doa-image"></div>
+            </div>
+            
+            <div class="text-column">
+                <p class="arabic-text">
+                    بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+                </p>
+                
+                <p class="doa-text">
+                    Ya Allah Ya Rahman Ya Rahim. <br>
+                    Berkatilah majlis perkahwinan ini. <br>
+                    Limpahkanlah baroqah dan rahmatMU kepada kedua mempelai ini. <br>
+                    Kurniakanlah mereka kelak zuriat yang soleh dan solehah. <br>
+                    Kekalkanlah jodoh mereka hingga ke jannah.
+                </p>
+                
+                <h2 class="countdown-title">MENGHITUNG HARI BAHAGIA</h2>
+                
+                <div class="timer-container" id="countdown-timer">
+                    <div class="timer-block">
+                        <span class="timer-number" id="days">000</span>
+                        <span class="timer-label">DAYS</span>
+                    </div>
+                    <div class="timer-block">
+                        <span class="timer-number" id="hours">00</span>
+                        <span class="timer-label">HOURS</span>
+                    </div>
+                    <div class="timer-block">
+                        <span class="timer-number" id="minutes">00</span>
+                        <span class="timer-label">MINS</span>
+                    </div>
+                    <div class="timer-block">
+                        <span class="timer-number" id="seconds">00</span>
+                        <span class="timer-label">SECS</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="contact-page" id="contact">
+        <div class="info-block-container">
+            
+            <h2 class="contact-title">Hubungi Kami</h2>
+            
+            <p class="contact-message">
+                Untuk sebarang pertanyaan mengenai RSVP, logistik, atau keperluan lain, sila hubungi kami atau wakil keluarga yang tersenarai di bawah.
+            </p>
+
+            <div class="contact-details-grid">
+                <div class="contact-block">
+                    <h4>Pengantin Lelaki (Sofi)</h4>
+                    <a href="tel:+60123456789">+60 12-345 6789</a>
+                </div>
+                
+                <div class="contact-block">
+                    <h4>Pengantin Perempuan (Alyaa)</h4>
+                    <a href="tel:+60109876543">+60 10-987 6543</a>
+                </div>
+                
+                <div class="contact-block">
+                    <h4>Wakil Keluarga (Puan Latieah)</h4>
+                    <a href="tel:+60172223333">+60 17-222 3333</a>
+                </div>
+            </div>
+
+            <p class="footer-end">
+                Terima kasih di atas segala doa dan sokongan anda.
+            </p>
+
+        </div>
+    </section>
+
+    <section class="wishes-page" id="wishes">
+        <div class="wishes-content">
+            <h2 class="wishes-title">UCAPAN TETAMU</h2>
+            
+            <div id="wishes-display">
+                <p class="loading-message">Loading wishes...</p>
+            </div>
+            
+        </div>
+    </section>
+
+
+    <script>
+        // --- 1. COUNTDOWN TIMER ---
+        // Set the date we're counting down to (March 28, 2026, 6:00 PM)
+        var countDownDate = new Date("Mar 28, 2026 18:00:00").getTime();
+        
+        var x = setInterval(function() {
+          var now = new Date().getTime();
+          var distance = countDownDate - now;
+            
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+          document.getElementById("days").innerHTML = days;
+          document.getElementById("hours").innerHTML = ("0" + hours).slice(-2);
+          document.getElementById("minutes").innerHTML = ("0" + minutes).slice(-2);
+          document.getElementById("seconds").innerHTML = ("0" + seconds).slice(-2);
+            
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown-timer").innerHTML = "MAJLIS SUDAH BERLANGSUNG!";
+          }
+        }, 1000);
+
+
+        // --- 2. MUSIC AUTOPLAY FIX (START ON BUTTON CLICK) ---
+        document.addEventListener('DOMContentLoaded', function() {
+            var playButton = document.getElementById('playMusic');
+            var audioPlayer = document.getElementById('music');
+            
+            function tryPlayMusic() {
+                playButton.removeEventListener('click', tryPlayMusic); 
+                audioPlayer.play().catch(error => {
+                    console.log("Audio play blocked by browser:", error);
+                });
+            }
+
+            if (playButton) {
+                playButton.addEventListener('click', tryPlayMusic);
+            }
+        });
+
+
+        // --- 3. WISHES DISPLAY FROM GOOGLE SHEET (UPDATED VERSION) ---
+        // 🚨 CRITICAL: REPLACE THE URL BELOW WITH THE CSV LINK COPIED FROM GOOGLE SHEETS 'Publish to web'
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQpEtww4FsTar2klFrx5VgE2LxYHPl22FWH0rNAY8cT7r5xs28kpzTeJ5AgTo1iQE8J1gL_1_kESkJV/pub?gid=469867353&single=true&output=csv';
+
+        function fetchAndDisplayWishes() {
+            const wishesDisplay = document.getElementById('wishes-display');
+            
+            if (CSV_URL.includes('https://docs.google.com/spreadsheets/d/e/2PACX-1vQpEtww4FsTar2klFrx5VgE2LxYHPl22FWH0rNAY8cT7r5xs28kpzTeJ5AgTo1iQE8J1gL_1_kESkJV/pub?gid=469867353&single=true&output=csv')) {
+                wishesDisplay.innerHTML = '<p class="loading-message" style="color: red;">ERROR: Sila ganti "PASTE_YOUR_FULL_PUBLISH_TO_WEB_LINK_HERE" dalam script dengan Pautan CSV Publish anda.</p>';
+                return;
+            }
+
+            fetch(CSV_URL)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Split data into rows, handling different newline characters
+                    const rows = data.trim().split(/[\r\n]+/);
+                    
+                    if (rows.length < 2) {
+                        wishesDisplay.innerHTML = '<p class="loading-message">Tiada ucapan lagi. Jadilah yang pertama!</p>';
+                        return;
+                    }
+                    
+                    // Remove the header row
+                    rows.shift(); 
+
+                    let htmlContent = '';
+                    const arabicGreeting = 'بَارَكَ اللهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ';
+                    
+                    // Reverse the array to show newest wishes first, then iterate
+                    rows.reverse().forEach(row => { 
+                        // Use basic split by comma, relying on the column indexing.
+                        const columns = row.split(',');
+                        
+                        // We only proceed if we have at least 3 columns (Timestamp, Name, Message)
+                        if (columns && columns.length >= 3) {
+                            // Column 1 is Name, Column 2 is Message
+                            const senderName = columns[1] ? columns[1].replace(/"/g, '').trim() : 'Anonymous'; 
+                            const wishMessage = columns[2] ? columns[2].replace(/"/g, '').trim() : 'Tiada Mesej'; 
+                            
+                            // Check if the essential fields are present before rendering
+                            if (senderName !== 'Anonymous' && wishMessage !== 'Tiada Mesej') {
+                                htmlContent += `
+                                    <div class="wish-card">
+                                        <p class="arabic-text">
+                                            ${arabicGreeting}
+                                        </p>
+                                        <p class="wish-message">
+                                            ${wishMessage.replace(/\n/g, '<br>')}
+                                        </p>
+                                        <span class="dot-separator">
+                                            <span></span><span></span><span></span>
+                                        </span>
+                                        <p class="wish-sender">
+                                            ~ ${senderName} ~
+                                        </p>
+                                    </div>
+                                `;
+                            }
+                        }
+                    });
+
+                    if (htmlContent === '') {
+                        wishesDisplay.innerHTML = '<p class="loading-message">Tiada ucapan yang dapat dipaparkan buat masa ini.</p>';
+                    } else {
+                        wishesDisplay.innerHTML = htmlContent;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching wishes:", error);
+                    // Show a more specific message if the fetch failed due to network/CORS/incorrect URL
+                    wishesDisplay.innerHTML = '<p class="loading-message" style="color: red; font-weight: 600;">Gagal memuatkan ucapan. Sila semak Pautan CSV yang dimasukkan.</p>';
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchAndDisplayWishes);
+    </script>
+    
+</body>
+</html>
