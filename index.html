@@ -77,6 +77,20 @@
             color: #4A4543; 
         }
         
+        /* --- Scroll Reveal Base Style --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform;
+        }
+
+        /* --- Scroll Reveal Active Style --- */
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* --- 1. HERO SECTION (Page 1) STYLING --- */
         .hero {
             /* Ensure you have an image named 'image_60b1a4.jpg' in your folder */
@@ -109,6 +123,7 @@
             padding-bottom: 10vh;
         }
         
+        /* These specific elements now have the fade-in class directly */
         .names {
             font-family: 'Playfair Display', serif;
             font-size: 5rem;
@@ -155,6 +170,11 @@
             font-size: 0.75rem;
             color: #D3C4B8; 
             text-transform: uppercase;
+        }
+
+        /* Ensure the content inside the info bar is correctly spaced */
+        .date-time, .location {
+             margin: 0;
         }
         
         /* --- SECTIONS 2, 3, 4, 5, 7 (Default Background) --- */
@@ -281,7 +301,6 @@
         .contact-block { text-align: center; padding: 15px; flex: 1;}
         .contact-block h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.8rem; color: #4A4543;}
         
-        /* NEW STYLE: Phone numbers (links) use a simple, subtle Montserrat font */
         .contact-block a { 
             font-family: 'Montserrat', sans-serif; 
             font-size: 1rem; 
@@ -292,11 +311,20 @@
         }
 
         .contact-block a:hover { color: #4A4543;}
-        .footer-end { font-size: 0.8rem; margin-top: 40px; color: #BCAAA4; border-top: 1px solid #BCAAA4; padding-top: 20px;}
         
-        /* --- SECTION 7: WISHES PAGE STYLING (UCAPAN TAMU) --- */
+        /* FOOTER STYLING FOR CONTACT PAGE (Removed Copyright) */
+        .footer-end { 
+            font-size: 0.8rem; 
+            margin-top: 40px; 
+            color: #BCAAA4; 
+            border-top: 1px solid #BCAAA4; 
+            padding-top: 20px;
+            line-height: 1.8; 
+        }
+        
+        /* --- SECTION 7: WISHES PAGE STYLING (CAROUSEL) --- */
         .wishes-content {
-            max-width: 800px;
+            max-width: 600px; /* Smaller width for focused view */
             width: 100%;
             padding: 40px 20px;
         }
@@ -311,28 +339,64 @@
             margin-bottom: 50px;
         }
 
-        #wishes-display {
-            padding-top: 20px;
+        /* Wishes Carousel Container */
+        .wishes-carousel {
+            position: relative;
+            min-height: 250px; /* Ensure space even if content is short */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        .wish-card {
-            border-bottom: 1px dashed #BCAAA4; 
-            padding: 40px 0;
-            margin-bottom: 30px;
+        /* Wish Box Styling (Glassmorphism) */
+        .wish-box {
+            background-color: rgba(255, 255, 255, 0.4); 
+            border: 1px solid rgba(188, 170, 164, 0.5); 
+            padding: 30px 40px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            position: absolute; 
+            top: 0;
+            left: 5%;
+            bottom: 0;
+            right: 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            backdrop-filter: blur(5px); 
+            -webkit-backdrop-filter: blur(5px); 
         }
 
-        .wish-card:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
+        /* Navigation Buttons */
+        .carousel-nav-btn {
+            background: none;
+            border: none;
+            color: #92786B;
+            font-size: 2.5rem;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            opacity: 0.7;
+            transition: opacity 0.2s, color 0.2s;
+            padding: 0 10px;
+            line-height: 1;
         }
 
-        .arabic-text {
-            font-family: 'Traditional Arabic', serif; 
-            font-size: 1.8rem; 
-            line-height: 2;
-            color: #92786B; 
-            margin-bottom: 1rem;
+        .carousel-nav-btn:hover {
+            opacity: 1;
+            color: #4A4543;
         }
+
+        #prev-wish-btn { left: -10px; }
+        #next-wish-btn { right: -10px; }
+
 
         .wish-message {
             font-family: 'Montserrat', sans-serif;
@@ -340,25 +404,28 @@
             line-height: 1.7;
             color: #4A4543; 
             margin-bottom: 1.5rem;
+            /* Max height for messages to prevent layout shift */
+            max-height: 150px; 
+            overflow-y: auto;
         }
 
         .wish-sender {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 400;
             color: #92786B; 
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .loading-message {
             color: #92786B;
             font-size: 1rem;
         }
-
+        
         .dot-separator {
             display: block;
             text-align: center;
-            margin: 20px 0;
+            margin: 10px 0;
         }
         .dot-separator span {
             display: inline-block;
@@ -367,6 +434,17 @@
             background-color: #BCAAA4; 
             border-radius: 50%;
             margin: 0 5px;
+        }
+
+        /* --- FINAL COPYRIGHT FOOTER --- */
+        .final-footer {
+            background-color: #CFC5B8; /* Slightly darker than page background for contrast */
+            color: #79665B;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
         
         /* --- MOBILE RESPONSIVENESS ADJUSTMENTS --- */
@@ -457,13 +535,22 @@
             }
             
             /* Adjustments for Wishes Page (Page 7) */
-            .wishes-title {
+            .wishes-content {
                 font-size: 1.2rem;
                 letter-spacing: 3px;
                 margin-bottom: 30px;
             }
-            .wish-card {
-                padding: 30px 0;
+            .wish-box {
+                padding: 20px;
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+            #prev-wish-btn { left: 0px; font-size: 2rem;}
+            #next-wish-btn { right: 0px; font-size: 2rem;}
+            .wish-message {
+                 font-size: 0.9rem;
+                 max-height: 120px;
             }
         }
     </style>
@@ -479,32 +566,29 @@
 
     <nav class="main-nav">
         <ul class="nav-list">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#invitation">Jemputan</a></li>
-            <li><a href="#schedule">Jadual</a></li>
-            <li><a href="#guestbook">Ucapan</a></li>
-            <li><a href="#doa">Doa</a></li>
-            <li><a href="#contact">Hubungi</a></li>
-            <li><a href="#wishes">Ucapan Tamu</a></li>
+            <li><a href="#schedule">TARIKH</a></li>
+            <li><a href="#schedule">LOKASI</a></li>
+            <li><a href="#contact">HUBUNGI</a></li>
+            <li><a href="#wishes">UCAPAN</a></li>
         </ul>
     </nav>
 
 
     <header class="hero" id="home">
         <div class="hero-content">
-            <h1 class="names">Sofi & Alyaa</h1>
-            <p class="tagline">ARE GETTING MARRIED</p>
-            <a href="#invitation" class="rsvp-button">VIEW INVITATION</a>
+            <h1 class="names fade-in-section">Sofi & Alyaa</h1>
+            <p class="tagline fade-in-section">ARE GETTING MARRIED</p>
+            <a href="#schedule" class="rsvp-button fade-in-section">VIEW INVITATION</a>
         </div>
         
         <div class="info-bar">
-            <p class="date-time">MARCH 28, 2026 - 6:00 PM - 10:00 PM</p>
-            <p class="location">ADINDA WEDDING HALL, BANDAR PERDA</p>
+            <p class="date-time fade-in-section">MARCH 28, 2026 - 6:00 PM - 10:00 PM</p>
+            <p class="location fade-in-section">ADINDA WEDDING HALL, BANDAR PERDA</p>
         </div>
     </header>
 
     <section class="parents-page" id="invitation">
-        <div class="info-block-container">
+        <div class="info-block-container fade-in-section">
             
             <p class="greeting">
                 ASSALAMUALAIKUM DAN<br>SALAM SEJAHTERA
@@ -518,7 +602,7 @@
 
             <p class="invitation-message">
                 Dengan penuh kesyukuran, kami menjemput Dato, Datin, Tuan, Puan, Encik, Cik seisi <br>
-                keluarga hadir ke majlis perkahwinan anakanda kami
+                keluarga hadir ke majlis perkahwinan anakanda kami dan pilihan hatinya
             </p>
 
             <div class="couple-names">
@@ -531,7 +615,7 @@
     </section>
 
     <section class="schedule-page" id="schedule">
-        <div class="schedule-content">
+        <div class="schedule-content fade-in-section">
             
             <div class="details-column">
                 <h2 class="schedule-title">Maklumat Majlis</h2>
@@ -590,7 +674,7 @@
     </section>
 
     <section class="guestbook-page" id="guestbook">
-        <div class="info-block-container">
+        <div class="info-block-container fade-in-section">
             
             <h2 class="guestbook-title">Tinggalkan Ucapan</h2>
             <p class="guestbook-subtitle">Doa & Kata-Kata Tulus</p>
@@ -608,7 +692,7 @@
     </section>
     
     <section class="doa-page" id="doa">
-        <div class="doa-content">
+        <div class="doa-content fade-in-section">
             
             <div class="image-column">
                 <div class="doa-image"></div>
@@ -653,7 +737,7 @@
     </section>
 
     <section class="contact-page" id="contact">
-        <div class="info-block-container">
+        <div class="info-block-container fade-in-section">
             
             <h2 class="contact-title">Hubungi Kami</h2>
             
@@ -663,7 +747,7 @@
 
             <div class="contact-details-grid">
                 <div class="contact-block">
-                    <h4>Akmal (Wakil Keluarga)</h4>
+                    <h4>Akmal (Abang)</h4>
                     <a href="tel:+60123456789">0 18-462 5303</a>
                 </div>
                 
@@ -673,7 +757,7 @@
                 </div>
                 
                 <div class="contact-block">
-                    <h4>Siti Latifah (Ibu)</h4>
+                    <h4>SITI LATIFAH (Ibu)</h4>
                     <a href="tel:+60172223333">0 17-507 6854</a>
                 </div>
             </div>
@@ -686,19 +770,84 @@
     </section>
 
     <section class="wishes-page" id="wishes">
-        <div class="wishes-content">
+        <div class="wishes-content fade-in-section">
             <h2 class="wishes-title">UCAPAN TETAMU</h2>
             
-            <div id="wishes-display">
+            <div class="wishes-carousel" id="wishes-carousel">
                 <p class="loading-message">Loading wishes...</p>
+                
+                <button class="carousel-nav-btn" id="prev-wish-btn" style="display:none;">&lt;</button>
+                <button class="carousel-nav-btn" id="next-wish-btn" style="display:none;">&gt;</button>
+                
             </div>
             
         </div>
     </section>
 
+    <div class="final-footer">
+        &copy; 2025 Sofi & Alyaa. All Rights Reserved.
+    </div>
+
 
     <script>
-        // --- 1. COUNTDOWN TIMER ---
+        // --- 1. SCROLL REVEAL ANIMATION (MODIFIED FOR TARGETED HERO ELEMENTS) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select ALL elements with the fade-in class
+            const fadeInSections = document.querySelectorAll('.fade-in-section');
+            
+            const observerOptions = {
+                root: null, // viewport
+                // Trigger when 10% of element is visible. 
+                rootMargin: '0px 0px -10% 0px', 
+                threshold: 0.1 // 10% visibility
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Element entered viewport: ADD visible class to start animation
+                        entry.target.classList.add('visible');
+                    } else {
+                        // Element left viewport: REMOVE visible class so it can re-animate on re-entry
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, observerOptions);
+
+            fadeInSections.forEach(section => {
+                // If the element is within the HERO section (home), we add the 'visible' class 
+                // immediately, but keep the observer active to re-trigger if they scroll back up.
+                // For all other sections, the observer handles the initial animation.
+                if (section.closest('#home')) {
+                     // Set a slight delay for staggered effect on the first page load
+                     const delay = 0.2; // seconds
+                     
+                     // Determine a unique delay based on its tag/class for staggered effect
+                     let currentDelay = 0;
+                     if (section.classList.contains('names')) currentDelay = 0;
+                     else if (section.classList.contains('tagline')) currentDelay = 0.3;
+                     else if (section.classList.contains('rsvp-button')) currentDelay = 0.6;
+                     else currentDelay = 0.9; // For info-bar content
+                     
+                     
+                     setTimeout(() => {
+                         // Must be observed for the fade-out/re-fade-in effect on scroll
+                         observer.observe(section); 
+                         
+                         // Manually trigger the visible state for the initial view
+                         section.classList.add('visible'); 
+                         
+                     }, currentDelay * 1000); 
+                     
+                } else {
+                    // For all other sections (2 through 7), start observing normally
+                    observer.observe(section);
+                }
+            });
+        });
+
+
+        // --- 2. COUNTDOWN TIMER ---
         // Set the date we're counting down to (March 28, 2026, 6:00 PM)
         var countDownDate = new Date("Mar 28, 2026 18:00:00").getTime();
         
@@ -723,116 +872,167 @@
         }, 1000);
 
 
-        // --- 2. MUSIC AUTOPLAY FIX (START ON SCROLL/INTERACTION) ---
+        // --- 3. MUSIC AUTOPLAY FIX (START ON SCROLL/INTERACTION) ---
         var audioPlayed = false;
 
         function startMusicOnInteraction() {
             var audioPlayer = document.getElementById('music');
             
-            // Only attempt to play if it hasn't played yet
             if (!audioPlayed) {
                 audioPlayer.play().then(() => {
-                    // Success: music started
                     audioPlayed = true; 
-                    // Remove the event listener once the music has started
                     window.removeEventListener('scroll', startMusicOnInteraction);
                     window.removeEventListener('click', startMusicOnInteraction);
                     window.removeEventListener('touchstart', startMusicOnInteraction);
                 }).catch(error => {
-                    // Failure (browser block): keep listeners active and log error
                     console.log("Audio play blocked, waiting for another interaction:", error);
                 });
             }
         }
 
-        // Listen for Scroll, Click (desktop fallback), and Touch (mobile fallback)
         window.addEventListener('scroll', startMusicOnInteraction);
         window.addEventListener('click', startMusicOnInteraction);
         window.addEventListener('touchstart', startMusicOnInteraction);
 
 
-        // --- 3. WISHES DISPLAY FROM GOOGLE SHEET (FINAL CODE) ---
-        // This URL is the published CSV link you provided.
+        // --- 4. WISHES CAROUSEL LOGIC ---
+        // CSV URL from Google Sheet (ensure it is published to the web)
         const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQpEtww4FsTar2klFrx5VgE2LxYHPl22FWH0rNAY8cT7r5xs28kpzTeJ5AgTo1iQE8J1gL_1_kESkJV/pub?gid=469867353&single=true&output=csv';
+        let wishesData = [];
+        let currentWishIndex = 0;
+        const carouselContainer = document.getElementById('wishes-carousel');
+        const nextBtn = document.getElementById('next-wish-btn');
+        const prevBtn = document.getElementById('prev-wish-btn');
 
-        function fetchAndDisplayWishes() {
-            const wishesDisplay = document.getElementById('wishes-display');
-            
-            if (!CSV_URL.includes('google.com/spreadsheets')) {
-                 wishesDisplay.innerHTML = '<p class="loading-message" style="color: red;">ERROR: Please ensure the correct CSV link is entered in the script.</p>';
-                 return;
+        function showWish(index) {
+            if (wishesData.length === 0) return;
+
+            // Ensure index loops around
+            if (index >= wishesData.length) {
+                currentWishIndex = 0;
+            } else if (index < 0) {
+                currentWishIndex = wishesData.length - 1;
+            } else {
+                currentWishIndex = index;
             }
 
-            fetch(CSV_URL)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    const rows = data.trim().split(/[\r\n]+/);
+            const wish = wishesData[currentWishIndex];
+            
+            const currentWishBox = document.querySelector('.wish-box');
+            if (currentWishBox) {
+                // Fade out current box
+                currentWishBox.style.opacity = '0';
+                
+                setTimeout(() => {
+                    // Update content after fade out
+                    updateWishContent(wish);
                     
-                    if (rows.length < 2) {
-                        wishesDisplay.innerHTML = '<p class="loading-message">Tiada ucapan lagi. Jadilah yang pertama!</p>';
-                        return;
-                    }
-                    
-                    rows.shift(); 
-
-                    let htmlContent = '';
-                    
-                    // Reverse the array to show newest wishes first, then iterate
-                    rows.reverse().forEach(row => { 
-                        const columns = row.split(',');
-                        
-                        if (columns && columns.length >= 3) {
-                            const senderName = columns[1] ? columns[1].replace(/"/g, '').trim() : 'Anonymous'; 
-                            const wishMessage = columns[2] ? columns[2].replace(/"/g, '').trim() : 'Tiada Mesej'; 
-                            
-                            if (senderName !== 'Anonymous' && wishMessage !== 'Tiada Mesej') {
-                                htmlContent += `
-                                    <div class="wish-card">
-                                        <p class="wish-message">
-                                            ${wishMessage.replace(/\n/g, '<br>')}
-                                        </p>
-                                        <span class="dot-separator">
-                                            <span></span><span></span><span></span>
-                                        </span>
-                                        <p class="wish-sender">
-                                            ~ ${senderName} ~
-                                        </p>
-                                    </div>
-                                `;
-                            }
-                        }
-                    });
-
-                    if (htmlContent === '') {
-                        wishesDisplay.innerHTML = '<p class="loading-message">Tiada ucapan yang dapat dipaparkan buat masa ini.</p>';
-                    } else {
-                        wishesDisplay.innerHTML = htmlContent;
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching wishes:", error);
-                    wishesDisplay.innerHTML = '<p class="loading-message" style="color: red; font-weight: 600;">Gagal memuatkan ucapan. Sila semak Pautan CSV yang dimasukkan.</p>';
-                });
+                    // Fade in new box
+                    const newWishBox = document.getElementById('active-wish-box');
+                    if (newWishBox) newWishBox.style.opacity = '1';
+                }, 500); // Wait for CSS transition
+            } else {
+                 // Initial load without fade
+                 updateWishContent(wish);
+            }
+        }
+        
+        function updateWishContent(wish) {
+             const htmlContent = `
+                <div class="wish-box" id="active-wish-box">
+                    <p class="wish-message">
+                        ${wish.message}
+                    </p>
+                    <span class="dot-separator">
+                        <span></span><span></span><span></span>
+                    </span>
+                    <p class="wish-sender">
+                        ~ ${wish.sender} ~
+                    </p>
+                </div>
+            `;
+            
+            // Clear previous content, insert new content, and ensure buttons are in place
+            carouselContainer.innerHTML = htmlContent;
+            carouselContainer.appendChild(prevBtn);
+            carouselContainer.appendChild(nextBtn);
+            
+            // Only show buttons if there is more than one wish
+            if (wishesData.length > 1) {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+            } else {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            }
         }
 
-        document.addEventListener('DOMContentLoaded', fetchAndDisplayWishes);
-        
-        // --- 4. MOBILE VIEWPORT FIX (SCROLLS TO TOP ON LOAD) ---
-        // This ensures the browser starts on the Hero page instead of jumping to the second section.
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check if the scroll position is not at the top (i.e., if the browser jumped)
-            if (window.scrollY !== 0) {
-                // Force a scroll to the very top (0, 0) after a small delay
-                setTimeout(() => {
-                    window.scrollTo(0, 0);
-                }, 50); 
+        function nextWish() {
+            showWish(currentWishIndex + 1);
+        }
+
+        function prevWish() {
+            showWish(currentWishIndex - 1);
+        }
+
+        async function fetchAndDisplayWishes() {
+            try {
+                if (!CSV_URL.includes('google.com/spreadsheets')) {
+                     carouselContainer.innerHTML = '<p class="loading-message" style="color: red;">ERROR: Please ensure the correct CSV link is entered.</p>';
+                     return;
+                }
+
+                const response = await fetch(CSV_URL);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.text();
+                
+                const rows = data.trim().split(/[\r\n]+/);
+                
+                if (rows.length < 2) {
+                    carouselContainer.innerHTML = '<p class="loading-message">Tiada ucapan lagi. Jadilah yang pertama!</p>';
+                    return;
+                }
+                
+                rows.shift(); // Remove header row
+
+                let tempWishes = [];
+                // Reverse rows to show newest wishes first
+                rows.reverse().forEach(row => { 
+                    const columns = row.split(',');
+                    
+                    if (columns && columns.length >= 3) {
+                        const senderName = columns[1] ? columns[1].replace(/"/g, '').trim() : 'Anonymous'; 
+                        const wishMessage = columns[2] ? columns[2].replace(/"/g, '').trim().replace(/\n/g, '<br>') : 'Tiada Mesej'; 
+                        
+                        // Basic validation to skip empty wishes
+                        if (senderName && wishMessage && senderName !== 'Anonymous' && wishMessage !== 'Tiada Mesej') {
+                            tempWishes.push({ sender: senderName, message: wishMessage });
+                        }
+                    }
+                });
+                
+                wishesData = tempWishes;
+
+                if (wishesData.length === 0) {
+                    carouselContainer.innerHTML = '<p class="loading-message">Tiada ucapan yang dapat dipaparkan buat masa ini.</p>';
+                    return;
+                }
+                
+                // Display the first (newest) wish
+                showWish(0);
+
+            } catch (error) {
+                console.error("Error fetching wishes:", error);
+                carouselContainer.innerHTML = '<p class="loading-message" style="color: red; font-weight: 600;">Gagal memuatkan ucapan. Sila semak Pautan CSV.</p>';
             }
-        });
+        }
+
+        // Event Listeners for Carousel
+        nextBtn.addEventListener('click', nextWish);
+        prevBtn.addEventListener('click', prevWish);
+
+        // Fetch wishes when DOM is ready
+        document.addEventListener('DOMContentLoaded', fetchAndDisplayWishes);
     </script>
     
 </body>
