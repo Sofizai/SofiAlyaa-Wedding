@@ -79,6 +79,7 @@
         
         /* --- 1. HERO SECTION (Page 1) STYLING --- */
         .hero {
+            /* Ensure you have an image named 'image_60b1a4.jpg' in your folder */
             background: url('background.jpg') no-repeat center center/cover;
             height: calc(100vh - 60px); 
             position: relative;
@@ -156,8 +157,8 @@
             text-transform: uppercase;
         }
         
-        /* --- SECTIONS 2, 3, 4, 5 (Default Background) --- */
-        .parents-page, .schedule-page, .guestbook-page, .doa-page {
+        /* --- SECTIONS 2, 3, 4, 5, 7 (Default Background) --- */
+        .parents-page, .schedule-page, .guestbook-page, .doa-page, .wishes-page {
             background-color: #DED8CC; 
             min-height: 100vh;
             display: flex;
@@ -229,13 +230,41 @@
         .guestbook-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 400; margin-bottom: 0.5rem; color: #4A4543;}
         .guestbook-subtitle { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: #92786B; margin-bottom: 2rem;}
         .guestbook-message { font-size: 0.95rem; line-height: 1.8; color: #4A4543; margin-bottom: 2.5rem;}
-        .message-box { width: 100%; height: 150px; padding: 15px; border: 1px solid #BCAAA4; background-color: #F7F7F7; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; resize: none; color: #92786B; text-align: left; margin-bottom: 1.5rem;}
-        .form-instructions { font-size: 0.85rem; color: #92786B; margin-top: 1.5rem; border-top: 1px solid #BCAAA4; padding-top: 1.5rem;}
-        .form-instructions a { color: #92786B; font-weight: 600; text-decoration: underline;}
+        
+        .form-instructions { 
+            font-size: 0.85rem; 
+            color: #92786B; 
+            margin-top: 1.5rem; 
+            border-top: 1px solid #BCAAA4; 
+            padding-top: 1.5rem; 
+            text-align: center;
+        } 
+        
+        .guestbook-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            margin-top: 1rem;
+            border: 2px solid #92786B; 
+            color: #4A4543; 
+            background-color: transparent;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .guestbook-button:hover {
+            background-color: #92786B; 
+            color: #fff; 
+            border-color: #92786B;
+        }
 
         /* --- SECTION 5: DO'A & COUNTDOWN STYLING --- */
         .doa-content { max-width: 1000px; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 60px 40px; border: 1px solid #BCAAA4; background-color: rgba(255, 255, 255, 0.9); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);}
         .image-column, .text-column { width: 48%; text-align: left;}
+        /* Ensure you have an image named 'image_5fc5a2.png' in your folder */
         .doa-image { width: 100%; height: 400px; background: url('binga.jpg') no-repeat center center/cover; filter: grayscale(100%) brightness(90%) contrast(100%); border: 1px solid #BCAAA4;}
         .arabic-text { font-family: 'Traditional Arabic', serif; font-size: 2.2rem; text-align: left; line-height: 1.8; color: #4A4543; margin-bottom: 2.5rem;}
         .doa-text { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; line-height: 1.8; color: #92786B; margin-bottom: 4rem;}
@@ -251,22 +280,21 @@
         .contact-details-grid { display: flex; justify-content: space-around; gap: 30px; margin-bottom: 40px;}
         .contact-block { text-align: center; padding: 15px; flex: 1;}
         .contact-block h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.8rem; color: #4A4543;}
-        .contact-block p, .contact-block a { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: #92786B; text-decoration: none; transition: color 0.3s;}
+        
+        /* NEW STYLE: Phone numbers (links) use a simple, subtle Montserrat font */
+        .contact-block a { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 1rem; 
+            font-weight: 400; 
+            color: #92786B; 
+            text-decoration: none; 
+            transition: color 0.3s;
+        }
+
         .contact-block a:hover { color: #4A4543;}
         .footer-end { font-size: 0.8rem; margin-top: 40px; color: #BCAAA4; border-top: 1px solid #BCAAA4; padding-top: 20px;}
         
         /* --- SECTION 7: WISHES PAGE STYLING (UCAPAN TAMU) --- */
-        .wishes-page {
-            background-color: #DED8CC; 
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 80px 20px;
-        }
-
         .wishes-content {
             max-width: 800px;
             width: 100%;
@@ -341,7 +369,103 @@
             margin: 0 5px;
         }
         
-        /* --- Responsive Adjustments Omitted for Brevity (They are still in the full code) --- */
+        /* --- MOBILE RESPONSIVENESS ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            /* Adjustments for Navigation */
+            .main-nav {
+                padding: 0 10px;
+            }
+            .nav-list {
+                gap: 10px; /* Reduce spacing between nav links */
+            }
+            .nav-list a {
+                font-size: 0.65rem; /* Make text smaller on small screens */
+                letter-spacing: 1px;
+            }
+            
+            /* Adjustments for Hero Section */
+            .names {
+                font-size: 3rem; /* Reduce font size for main names */
+            }
+            .tagline {
+                font-size: 0.8rem;
+                letter-spacing: 3px;
+            }
+            .info-bar {
+                flex-direction: column;
+                padding: 1rem 1rem;
+                align-items: center;
+                text-align: center;
+                line-height: 1.5;
+            }
+            
+            /* Adjustments for Invitation Page */
+            .info-block-container {
+                padding: 40px 30px; /* Reduce padding on the main content box */
+            }
+            .parent-names .ampersand, .couple-names .ampersand {
+                font-size: 2.5rem;
+            }
+            .parent-names, .couple-names {
+                font-size: 1.1rem;
+            }
+            .invitation-message {
+                margin: 2rem 0;
+            }
+
+            /* CRITICAL: Stack Schedule Columns (Page 3) */
+            .schedule-content {
+                flex-direction: column; /* Stack columns vertically */
+                padding: 30px 20px;
+            }
+            .details-column, .schedule-column {
+                width: 100%; /* Take full width */
+                margin-bottom: 30px;
+                padding: 0;
+            }
+            .time-entry .time {
+                width: 25%;
+            }
+
+            /* CRITICAL: Stack Doa/Countdown Columns (Page 5) */
+            .doa-content {
+                flex-direction: column; /* Stack columns vertically */
+                padding: 30px 20px;
+            }
+            .image-column, .text-column {
+                width: 100%; /* Take full width */
+                margin-bottom: 20px;
+            }
+            .doa-image {
+                height: 300px; /* Reduce image height on mobile */
+            }
+            .timer-container {
+                justify-content: center; /* Center the countdown timer blocks */
+                gap: 10px;
+            }
+            .timer-number {
+                font-size: 3rem;
+            }
+            .arabic-text {
+                font-size: 1.5rem;
+            }
+            
+            /* Adjustments for Contact Details (Page 6) */
+            .contact-details-grid {
+                flex-direction: column; /* Stack contact blocks vertically */
+                gap: 15px;
+            }
+            
+            /* Adjustments for Wishes Page (Page 7) */
+            .wishes-title {
+                font-size: 1.2rem;
+                letter-spacing: 3px;
+                margin-bottom: 30px;
+            }
+            .wish-card {
+                padding: 30px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -370,7 +494,7 @@
         <div class="hero-content">
             <h1 class="names">Sofi & Alyaa</h1>
             <p class="tagline">ARE GETTING MARRIED</p>
-            <a href="#invitation" class="rsvp-button" id="playMusic">VIEW INVITATION</a>
+            <a href="#invitation" class="rsvp-button">VIEW INVITATION</a>
         </div>
         
         <div class="info-bar">
@@ -389,7 +513,7 @@
             <div class="parent-names">
                 ZABIDI BIN ABDULLAH
                 <span class="ampersand">&</span>
-                SITI LATIEAH BINTI CHE WANG
+                SITI LATIFAH BINTI CHE WANG
             </div>
 
             <p class="invitation-message">
@@ -472,14 +596,12 @@
             <p class="guestbook-subtitle">Doa & Kata-Kata Tulus</p>
 
             <p class="guestbook-message">
-                Kami amat gembira untuk berkongsi hari bahagia ini bersama anda. Sila tinggalkan ucapan tahniah dan doa tulus ikhlas anda untuk kami memulakan kehidupan baru.
+                Kami amat gembira untuk berkongsi hari bahagia ini bersama anda. Sila klik butang di bawah untuk meninggalkan ucapan tahniah dan doa tulus ikhlas anda untuk kami memulakan kehidupan baru.
             </p>
-
-            <textarea class="message-box" placeholder="Contoh: Tahniah Sofi & Alyaa! Semoga berkekalan hingga ke Jannah. Kami doakan yang terbaik untuk kehidupan baru anda berdua."></textarea>
             
             <p class="form-instructions">
-                **PERHATIAN:** Untuk meninggalkan ucapan anda secara rasmi, sila klik pada pautan berikut untuk mengisi borang: <br>
-                <a href="https://forms.gle/cNJxeKtGA7vgf69i9" target="_blank" rel="noopener noreferrer">KLIK SINI UNTUK TINGGALKAN MESEJ</a>
+                **KLIK DI SINI UNTUK MENGISI BORANG UCAPAN:** <br>
+                <a href="https://forms.gle/1jfoDD63YpbZd4eZ9" target="_blank" rel="noopener noreferrer" class="guestbook-button">KLIK SINI UNTUK TINGGALKAN MESEJ</a>
             </p>
 
         </div>
@@ -541,18 +663,18 @@
 
             <div class="contact-details-grid">
                 <div class="contact-block">
-                    <h4>Pengantin Lelaki (Sofi)</h4>
-                    <a href="tel:+60123456789">+60 12-345 6789</a>
+                    <h4>Akmal (Wakil Keluarga)</h4>
+                    <a href="tel:+60123456789">0 18-462 5303</a>
                 </div>
                 
                 <div class="contact-block">
-                    <h4>Pengantin Perempuan (Alyaa)</h4>
-                    <a href="tel:+60109876543">+60 10-987 6543</a>
+                    <h4>Zabidi (Bapa)</h4>
+                    <a href="tel:+60109876543">0 10-342 2836</a>
                 </div>
                 
                 <div class="contact-block">
-                    <h4>Wakil Keluarga (Puan Latieah)</h4>
-                    <a href="tel:+60172223333">+60 17-222 3333</a>
+                    <h4>Siti Latifah (Ibu)</h4>
+                    <a href="tel:+60172223333">0 17-507 6854</a>
                 </div>
             </div>
 
@@ -601,34 +723,44 @@
         }, 1000);
 
 
-        // --- 2. MUSIC AUTOPLAY FIX (START ON BUTTON CLICK) ---
-        document.addEventListener('DOMContentLoaded', function() {
-            var playButton = document.getElementById('playMusic');
+        // --- 2. MUSIC AUTOPLAY FIX (START ON SCROLL/INTERACTION) ---
+        var audioPlayed = false;
+
+        function startMusicOnInteraction() {
             var audioPlayer = document.getElementById('music');
             
-            function tryPlayMusic() {
-                playButton.removeEventListener('click', tryPlayMusic); 
-                audioPlayer.play().catch(error => {
-                    console.log("Audio play blocked by browser:", error);
+            // Only attempt to play if it hasn't played yet
+            if (!audioPlayed) {
+                audioPlayer.play().then(() => {
+                    // Success: music started
+                    audioPlayed = true; 
+                    // Remove the event listener once the music has started
+                    window.removeEventListener('scroll', startMusicOnInteraction);
+                    window.removeEventListener('click', startMusicOnInteraction);
+                    window.removeEventListener('touchstart', startMusicOnInteraction);
+                }).catch(error => {
+                    // Failure (browser block): keep listeners active and log error
+                    console.log("Audio play blocked, waiting for another interaction:", error);
                 });
             }
+        }
 
-            if (playButton) {
-                playButton.addEventListener('click', tryPlayMusic);
-            }
-        });
+        // Listen for Scroll, Click (desktop fallback), and Touch (mobile fallback)
+        window.addEventListener('scroll', startMusicOnInteraction);
+        window.addEventListener('click', startMusicOnInteraction);
+        window.addEventListener('touchstart', startMusicOnInteraction);
 
 
-        // --- 3. WISHES DISPLAY FROM GOOGLE SHEET (UPDATED VERSION) ---
-        // 🚨 CRITICAL: REPLACE THE URL BELOW WITH THE CSV LINK COPIED FROM GOOGLE SHEETS 'Publish to web'
+        // --- 3. WISHES DISPLAY FROM GOOGLE SHEET (FINAL CODE) ---
+        // This URL is the published CSV link you provided.
         const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQpEtww4FsTar2klFrx5VgE2LxYHPl22FWH0rNAY8cT7r5xs28kpzTeJ5AgTo1iQE8J1gL_1_kESkJV/pub?gid=469867353&single=true&output=csv';
 
         function fetchAndDisplayWishes() {
             const wishesDisplay = document.getElementById('wishes-display');
             
-            if (CSV_URL.includes('https://docs.google.com/spreadsheets/d/e/2PACX-1vQpEtww4FsTar2klFrx5VgE2LxYHPl22FWH0rNAY8cT7r5xs28kpzTeJ5AgTo1iQE8J1gL_1_kESkJV/pub?gid=469867353&single=true&output=csv')) {
-                wishesDisplay.innerHTML = '<p class="loading-message" style="color: red;">ERROR: Sila ganti "PASTE_YOUR_FULL_PUBLISH_TO_WEB_LINK_HERE" dalam script dengan Pautan CSV Publish anda.</p>';
-                return;
+            if (!CSV_URL.includes('google.com/spreadsheets')) {
+                 wishesDisplay.innerHTML = '<p class="loading-message" style="color: red;">ERROR: Please ensure the correct CSV link is entered in the script.</p>';
+                 return;
             }
 
             fetch(CSV_URL)
@@ -639,7 +771,6 @@
                     return response.text();
                 })
                 .then(data => {
-                    // Split data into rows, handling different newline characters
                     const rows = data.trim().split(/[\r\n]+/);
                     
                     if (rows.length < 2) {
@@ -647,30 +778,21 @@
                         return;
                     }
                     
-                    // Remove the header row
                     rows.shift(); 
 
                     let htmlContent = '';
-                    const arabicGreeting = 'بَارَكَ اللهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ';
                     
                     // Reverse the array to show newest wishes first, then iterate
                     rows.reverse().forEach(row => { 
-                        // Use basic split by comma, relying on the column indexing.
                         const columns = row.split(',');
                         
-                        // We only proceed if we have at least 3 columns (Timestamp, Name, Message)
                         if (columns && columns.length >= 3) {
-                            // Column 1 is Name, Column 2 is Message
                             const senderName = columns[1] ? columns[1].replace(/"/g, '').trim() : 'Anonymous'; 
                             const wishMessage = columns[2] ? columns[2].replace(/"/g, '').trim() : 'Tiada Mesej'; 
                             
-                            // Check if the essential fields are present before rendering
                             if (senderName !== 'Anonymous' && wishMessage !== 'Tiada Mesej') {
                                 htmlContent += `
                                     <div class="wish-card">
-                                        <p class="arabic-text">
-                                            ${arabicGreeting}
-                                        </p>
                                         <p class="wish-message">
                                             ${wishMessage.replace(/\n/g, '<br>')}
                                         </p>
@@ -694,12 +816,23 @@
                 })
                 .catch(error => {
                     console.error("Error fetching wishes:", error);
-                    // Show a more specific message if the fetch failed due to network/CORS/incorrect URL
                     wishesDisplay.innerHTML = '<p class="loading-message" style="color: red; font-weight: 600;">Gagal memuatkan ucapan. Sila semak Pautan CSV yang dimasukkan.</p>';
                 });
         }
 
         document.addEventListener('DOMContentLoaded', fetchAndDisplayWishes);
+        
+        // --- 4. MOBILE VIEWPORT FIX (SCROLLS TO TOP ON LOAD) ---
+        // This ensures the browser starts on the Hero page instead of jumping to the second section.
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if the scroll position is not at the top (i.e., if the browser jumped)
+            if (window.scrollY !== 0) {
+                // Force a scroll to the very top (0, 0) after a small delay
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                }, 50); 
+            }
+        });
     </script>
     
 </body>
